@@ -37,11 +37,10 @@ ScoreBar.prototype.addAllComponents = function () {
 };
 
 ScoreBar.prototype.updateScore = function (damage) {
-    /*
+    /**
         50 = 500px;
         50 + damage = ?
-
-        ( 500 * (50 + damage) ) / 50 = new width
+        ( 500 * (50 + damage) ) / 50 = new width (pixels)
     */
 
 
