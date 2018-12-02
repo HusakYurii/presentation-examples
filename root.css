@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Acme|Gamja+Flower');
+
+/*font-family: 'Gamja Flower', cursive;
+font-family: 'Acme', sans-serif;*/
+* {
+    box-sizing: border-box;
+    font-size: 10px;
+}
+html {
+    background-color: azure;
+    margin: 0;
+    padding: 0;
+}
+ol.first, ol.second {
+    list-style-type: square;
+}
+
+ol.first > li, ol.second > li {
+    border-bottom: 4px solid transparent;
+    transition: border-bottom 0.3s ;
+}
+
+ol.first > li:hover, ol.second > li:hover {
+    border-bottom: 4px solid #162742;
+}
+
+ol > p {
+    font-family: 'Acme', sans-serif;
+    font-size: 3rem;
+}
+
+ol > li{
+    font-size: 2.5rem;
+}
+
+li > a {
+    font-family: 'Acme', sans-serif;
+    text-decoration: none;
+    font-size: 2.5rem;
+    color: #000;
+}
+li > a:visited {
+    text-decoration: none;
+    color: #000;
+}
+li > a:active {
+    text-decoration: none;
+    color: #000;
+}
+li > a:hover {
+    text-decoration: none;
+    color: #000;
+}

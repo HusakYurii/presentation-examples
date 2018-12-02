@@ -7,7 +7,7 @@ function Stage(){
 
 	this.addAllComponents();
 
-};
+}
 	
 Stage.prototype = Object.create(PIXI.Container.prototype);
 Stage.prototype.constructor = Stage;
