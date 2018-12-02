@@ -1,7 +1,7 @@
 function Stage(){
 	PIXI.Container.call(this)
 
-};
+}
 	
 Stage.prototype = Object.create(PIXI.Container.prototype);
 Stage.prototype.constructor = Stage;

@@ -23,16 +23,28 @@ APP.run = function() {
 	});
 
 	APP.app.ticker.add(APP.ticker);
-
-    APP.addStage();
-    Layout.resizeView();
+    APP.preloadAssets(APP.addStage, Assets);
 };
 
 APP.addStage = function(){
     APP.stage = APP.app.stage.addChild(new Stage());
+    Layout.resizeView();
+};
+
+APP.preloadAssets = function(onFinish, assets){
+    if(Preloader && assets){
+        Preloader.addAssets = assets;
+    }
+    if(Preloader && onFinish){
+        Preloader.load(onFinish);
+    }
+    else{
+        APP.addStage();
+    }
 };
 
 APP.ticker = function () {
+    if(!APP.stage  || !APP.stage.ticker){return;}
 	var delta = APP.app.ticker.elapsedMS;
     APP.stage.ticker(delta);
 };

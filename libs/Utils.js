@@ -37,3 +37,11 @@ Utils.toRadians = function (degrees) {
 Utils.toDegrees = function (radians) {
     return radians * (180 / Math.PI);
 };
+
+Utils.getRandomInt = function (min, max) {
+    return (Math.random() * (max - min) + min) | 0;
+};
+
+Utils.getRandom = function (min, max) {
+    return (Math.random() * (max - min) + min);
+};
