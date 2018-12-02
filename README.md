@@ -1,4 +1,5 @@
 # Presentation examples
+To navigate through examples use [Root file](https://husakyurii.github.io/presentation-examples/.)
 ## About:
 All examples are intended to be shown along with the presentation as the tools for visual comprehension
 
