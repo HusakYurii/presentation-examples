@@ -19,7 +19,7 @@ APP.run = function() {
 		height: APP.h,
 		view: view,
 		transparent: false,
-		backgroundColor: 0x000000
+		backgroundColor: 0xF2F2F2
 	});
 
 	APP.app.ticker.add(APP.ticker);
