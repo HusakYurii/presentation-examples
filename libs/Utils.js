@@ -11,7 +11,7 @@ Utils.drawTransparentRect = function (x, y, w, h, lineWidth, lineColor, alpha, a
     lineColor = lineColor || 0xFFFFFF;
     alpha = alpha || 1;
     alignment = alignment || 0.5;
-    return new PIXI.Graphics().lineStyle(lineWidth, color, alpha, alignment).drawRect().endFill();
+    return new PIXI.Graphics().lineStyle(lineWidth, lineColor, alpha, alignment).drawRect(x, y, w, h).endFill();
 }
 
 Utils.drawRect = function (x, y,  w, h, color, alpha) {
