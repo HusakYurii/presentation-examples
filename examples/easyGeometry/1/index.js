@@ -53,6 +53,7 @@ APP.resizeStage = function(glW, glH){
 
     if(!APP.stage){return;}
 
+    //coment this line out to show the original position of the sprite
     APP.stage.position.set(glW/2, glH/2);
     APP.stage.resizeStage(glW, glH);
 };
