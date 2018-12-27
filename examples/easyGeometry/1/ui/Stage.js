@@ -1,13 +1,10 @@
 function Stage(){
 	PIXI.Container.call(this);
 
-	this.stagesAmount = 4;
+	this.stagesConfigs = [{r: 10,c: 10,cellSizes: 30},{r: 5,c: 5,cellSizes: 20},{r: 8,c: 8,cellSizes: 10}];
 	this.stages = [];
 
 	this.centerPoint = null;
-
-	this.firstLocalStage = null;
-	this.secondLocalStage = null;
 
 	this.isClicked = false;
 	this.isMoved = false;
@@ -21,40 +18,15 @@ Stage.prototype.constructor = Stage;
 Stage.prototype.addAllComponents = function () {
 	this.centerPoint = this.addChild(Utils.drawCircle(0, 0, 7, 0xFFFF00, 1));
 
-	this.firstLocalStage = this.addChild(new LocalStage(10,10,30));
+	for (var i = 0; i < this.stagesConfigs.length; i++) {
+		var config = this.stagesConfigs[i];
+		var stage = new LocalStage(config.r, config.c, config.cellSizes);
 
-	this.secondLocalStage = this.addChild(new LocalStage(5,5,30));
-	//Uncoment this one to set the initial positions to the secondLocalStage
-	//this.secondLocalStage.position.set(250,250);
-	this.secondLocalStage.interactive = true;
-
-	this.secondLocalStage.on("pointerdown", this.onStageClick, this);
-	this.secondLocalStage.on("pointermove", this.onStageMove, this);
-	this.secondLocalStage.on("pointerup", this.onStageUp, this);
-	this.secondLocalStage.on("pointerupouside", this.onStageUp, this);
+		this.stages.push(stage);
+		this.addChild(stage);
+	}
 }
 
-Stage.prototype.onStageClick = function (event) {
-	if(this.isClicked){return;}
-	this.isClicked = true;
-	event.stopPropagation();
-};
-
-Stage.prototype.onStageMove = function (event) {
-	if(!this.isClicked){return;}
-	this.isMoved = true;
-
-	var loc = event.data.getLocalPosition(this);
-	this.secondLocalStage.position.set(loc.x, loc.y);
-	this.secondLocalStage._txt.text = "x: " + (loc.x | 0) + "\ny: " + (loc.y | 0);
-	
-	event.stopPropagation();
-};
-
-Stage.prototype.onStageUp = function (event) {
-	this.isMoved = false;
-	this.isClicked = false;
-};
 
 Stage.prototype.ticker = function(delta) {
 	
