@@ -15,6 +15,7 @@ function LocalStage(rows, columns, cellSize) {
 	this.centerPoint = null;
 	this.localRect = null;
 
+	this.interactive = true;
 	this.isClicked = false;
 	this.isMoved = false;
 
@@ -22,6 +23,12 @@ function LocalStage(rows, columns, cellSize) {
 
 	//this one for global manipulation
 	this.hitArea = new PIXI.Rectangle(-this._w/2, -this._h/2, this._w, this._h);
+
+
+	this.on("pointerdown", this.onStageClick, this);
+	this.on("pointermove", this.onStageMove, this);
+	this.on("pointerup", this.onStageUp, this);
+	this.on("pointerupouside", this.onStageUp, this);
 };
 
 LocalStage.prototype = Object.create(PIXI.Container.prototype);
@@ -57,11 +64,6 @@ LocalStage.prototype.addCenterPoint = function () {
 
 LocalStage.prototype.addIneractiveRect = function () {
 	this.localRect = this.addChild(new InteractiveRect());
-
-	this.localRect.on("pointerdown", this.onMousedown, this);
-	this.localRect.on("pointermove", this.onMousemove, this);
-	this.localRect.on("pointerup", this.onMouseup, this);
-	this.localRect.on("pointerupouside", this.onMouseup, this);
 }
 
 LocalStage.prototype.addAxes = function () {
@@ -69,30 +71,24 @@ LocalStage.prototype.addAxes = function () {
 	this.addChild(Utils.drawLine({x: 0, y: -this._h/2}, {x: 0, y: this._h/2}, 2, 0xFF0000, 1));
 }
 
-LocalStage.prototype.onMousedown = function (event) {
+LocalStage.prototype.onStageClick = function (event) {
 	if(this.isClicked){return;}
 	this.isClicked = true;
 	event.stopPropagation();
 };
 
-LocalStage.prototype.onMousemove = function (event) {
+LocalStage.prototype.onStageMove = function (event) {
 	if(!this.isClicked){return;}
 	this.isMoved = true;
 
-	var loc = event.data.getLocalPosition(this.centerPoint);
-	this.localRect.position.set(loc.x, loc.y);
-	this.localRect._txt.text = "x: " + (loc.x | 0) + "\ny: " + (loc.y | 0);
-
+	var loc = event.data.getLocalPosition(this.parent);
+	this.position.set(loc.x, loc.y);
+	this._txt.text = "x: " + (loc.x | 0) + "\ny: " + (loc.y | 0);
+	
 	event.stopPropagation();
-
 };
 
-LocalStage.prototype.onMouseup = function (event) {
+LocalStage.prototype.onStageUp = function (event) {
 	this.isMoved = false;
 	this.isClicked = false;
 };
-
-
-LocalStage.prototype.resizeStage = function (glW, glH) {
-	
-}
