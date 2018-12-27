@@ -8,10 +8,6 @@ function LocalStage(rows, columns, cellSize) {
 	this._w = this.cellSize * this.columns;
 	this._h = this.cellSize * this.rows
 
-	this._txt = this.addChild(Utils.drawText("x: 0\ny: 0", "0x000000"));
-	this._txt.position.set(-this._w/2, -this._h/2);
-	this._txt.style.fontSize = 15;
-
 	this.centerPoint = null;
 	this.localRect = null;
 
@@ -56,6 +52,11 @@ LocalStage.prototype.addGrid = function () {
 LocalStage.prototype.addLabes = function () {
 	this.addChild(Utils.drawText("X", 0xFF0000)).position.set(this._w/2 + 20, 0);
 	this.addChild(Utils.drawText("Y", 0xFF0000)).position.set(0, this._h/2 + 20);
+
+	
+	this._txt = this.addChild(Utils.drawText("x: 0\ny: 0", "0x000000"));
+	this._txt.position.set(-this._w/2, -this._h/2);
+	this._txt.style.fontSize = 15;
 }
 
 LocalStage.prototype.addCenterPoint = function () {
