@@ -1,3 +1,5 @@
+"use strict";
+
 function Stage(){
 	PIXI.Container.call(this);
 	
@@ -8,7 +10,6 @@ function Stage(){
 
 	this._speed = 0.05;
     this._dir = null;
-
 
 
 	this.addAllComponents();
@@ -35,14 +36,14 @@ Stage.prototype.scrollScages = function (dir) {
 };
 
 Stage.prototype.ticker = function(delta) {
+    if(this.currentStage){this.currentStage.ticker(delta);}
+
 	if(!this.isAnimated){return;}
+    this.currentStage.alpha -= this._speed;
+    if(this.currentStage.alpha <= 0){
+        this.updateStage();
 
-	this.currentStage.alpha -= this._speed;
-	if(this.currentStage.alpha <= 0){
-		this.updateStage();
 	}
-
-	if(this.currentStage){this.currentStage.ticker();}
 };
 
 Stage.prototype.updateStage = function () {
@@ -59,7 +60,6 @@ Stage.prototype.updateStage = function () {
 
 Stage.prototype.resizeStage = function(glW, glH) {
 	this.arrowsContainer.position.set((glW/2 - 100), -(glH/2 - 25));
-
-	this.animationDistance = glW;
+	if(this.currentStage){this.currentStage.resizeStage(glW, glH);}
 };
 
