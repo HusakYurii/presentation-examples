@@ -40,12 +40,12 @@ Stage.prototype.deleteRock = function(rock){
 Stage.prototype.changePlayerPosition = function(glW, glH){
 
 	/**
-	 * oldWidth / 2 = 1
+	 * oldWidth / 3 = 1
 	 * player.x = ?
 	 *
-	 * ( player.x * 2 ) / oldWidth = ratio
+	 * ( player.x * 3 ) / oldWidth = ratio
 	 *
-	 * new player position = newWidth/2 * ratio;
+	 * new player position = newWidth/3 * ratio;
 	 * */
 
     var newX = glW/2 * ( (this.player.x * 2) / this.oldWidth) | 0;

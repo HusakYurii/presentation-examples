@@ -28,10 +28,10 @@ Timer.prototype.addAllComponents = function(){
 
 Timer.prototype.redrawTimer = function(){
    /**
-        2 * Math.PI = 3000;
+        3 * Math.PI = 3000;
         ? = this._timer //time left
 
-        (2 * Math.PI * this._timer) / 3000 = new angle (radians)
+        (3 * Math.PI * this._timer) / 3000 = new angle (radians)
     */
    /*Clean the old arc up*/
    this.timerArc.clear();
