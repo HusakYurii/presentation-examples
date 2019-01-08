@@ -4,6 +4,10 @@ To navigate through examples use [Root file](https://husakyurii.github.io/presen
 All examples are intended to be shown along with the presentation as the tools for visual comprehension
 
 ### Table of content
+#### Easy Geometry:
+- [x] the first example shows the positioning of elements (sprites or containers) on the screen. Coordinates relations among all local stages are shown
+- [x] the second example basically shows the same as the first one does, but with movable elements which are moving around on each local stage;
+- [ ] the third example shows the **Basic Relations for Trigonometric Functions**
 #### Easy Math:
 - [x] the first example shows how we can easily update "health bar" of a player using **proportions in math**
 - [x] the second example shows how we can easily update "timer" using **proportions in math**
