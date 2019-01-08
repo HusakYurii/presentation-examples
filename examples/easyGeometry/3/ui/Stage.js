@@ -19,13 +19,14 @@ Stage.prototype = Object.create(PIXI.Container.prototype);
 Stage.prototype.constructor = Stage;
 
 Stage.prototype.addAllComponents = function () {
-	this.arrowsContainer = this.addChild(new ArrowsContainer());
-	this.arrowsContainer.scale.set(0.15);
-	this.arrowsContainer.on("left", this.scrollScages, this);
-	this.arrowsContainer.on("right", this.scrollScages, this);
-
 	this.currentStage = this.addChild(new FirstStage(600, 500, 0,0));
     this._dir = -1;
+
+
+    this.arrowsContainer = this.addChild(new ArrowsContainer());
+    this.arrowsContainer.scale.set(0.15);
+    this.arrowsContainer.on("left", this.scrollScages, this);
+    this.arrowsContainer.on("right", this.scrollScages, this);
 };
 
 
