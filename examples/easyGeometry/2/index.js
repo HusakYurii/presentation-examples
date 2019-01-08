@@ -23,7 +23,12 @@ APP.run = function() {
 	});
 
 	APP.app.ticker.add(APP.ticker);
-    APP.preloadAssets(APP.addStage, Assets);
+	try{
+        APP.preloadAssets(APP.addStage, Assets);
+    }catch{
+        APP.addStage();
+    }
+
 };
 
 APP.addStage = function(){
