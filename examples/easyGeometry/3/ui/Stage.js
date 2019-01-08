@@ -2,14 +2,13 @@ function Stage(){
 	PIXI.Container.call(this);
 	
 	this.arrowsContainer = null;
-	this.firstStage = null;
-	this.secondStage = null;
+	this.currentStage = null;
 
 	this.isAnimated = false;
 
-	this._speed = 20;
-	this._dist = 0;
-	this.animationDistance = 1000;
+	this._speed = 0.05;
+    this._dir = null;
+
 
 
 	this.addAllComponents();
@@ -24,14 +23,13 @@ Stage.prototype.addAllComponents = function () {
 	this.arrowsContainer.on("left", this.scrollScages, this);
 	this.arrowsContainer.on("right", this.scrollScages, this);
 
-	this.firstStage = this.addChild(new FirstStage(600, 500, 0,0));
-	this.secondStage = this.addChild(new FirstStage(300, 500, 1000,0));
-
+	this.currentStage = this.addChild(new FirstStage(600, 500, 0,0));
+    this._dir = -1;
 };
 
 
 Stage.prototype.scrollScages = function (dir) {
-	if(this.isAnimated){return;}
+	if(this.isAnimated || this._dir === dir){return;}
 	this.isAnimated = true;
 	this._dir = dir;
 };
@@ -39,14 +37,24 @@ Stage.prototype.scrollScages = function (dir) {
 Stage.prototype.ticker = function(delta) {
 	if(!this.isAnimated){return;}
 
-	this._dist += this._speed;
-	if(this._dist >= this.animationDistance){
-		this.isAnimated = false;
-		this._dist = 0;
+	this.currentStage.alpha -= this._speed;
+	if(this.currentStage.alpha <= 0){
+		this.updateStage();
 	}
 
-	this.firstStage.move(this._speed * this._dir, 0);
-    this.secondStage.move(this._speed * this._dir, 0);
+	if(this.currentStage){this.currentStage.ticker();}
+};
+
+Stage.prototype.updateStage = function () {
+
+    this.removeChild(this.currentStage);
+    this.currentStage = null;
+
+    this.currentStage = this._dir === -1 ? new FirstStage(600, 500, 0,0) : new SecondStage(500, 500, 0,0);
+    this.currentStage.alpha = 1;
+    this.addChild(this.currentStage);
+
+    this.isAnimated = false;
 };
 
 Stage.prototype.resizeStage = function(glW, glH) {
