@@ -43,8 +43,8 @@ Tank.prototype.visualizeAngle = function () {
     }
 
     this._arc.clear();
-    var flag = (Math.PI/2 > this._angle && -Math.PI/2 < this._angle);
-    this._arc.lineStyle(2, "0x00FFFF", 1).arc(0,0, 100, Math.PI/2, this._angle, flag).endFill();
+    var isClockwise = (Math.PI/2 > this._angle && -Math.PI/2 < this._angle);
+    this._arc.lineStyle(2, "0x00FFFF", 1).arc(0,0, 100, Math.PI/2, this._angle, isClockwise).endFill();
 };
 
 Tank.prototype.move = function (delta) {
