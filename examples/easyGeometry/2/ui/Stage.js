@@ -18,7 +18,7 @@ Stage.prototype.addAllComponents = function () {
     this.outerStage = this.addChild(new Axes(400, 400));
     this.outerBall = this.outerStage.addChild(new Ball(this.outerStage, 20, 1));
 
-    this.innerStage = this.addChild(new Axes(250, 250, 300, -150));
+    this.innerStage = this.addChild(new Axes(250, 250, 200, -250));
     this.innerBall = this.innerStage.addChild(new Ball(this.innerStage, 10, -0.5));
 };
 

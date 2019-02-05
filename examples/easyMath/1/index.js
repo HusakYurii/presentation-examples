@@ -1,7 +1,7 @@
 var APP = {};
 /*Initial sizes of a canvas*/
-APP.w = 800;
-APP.h = 600;
+APP.w = 900;
+APP.h = 900;
 /*The current stage*/
 APP.stage = null;
 
