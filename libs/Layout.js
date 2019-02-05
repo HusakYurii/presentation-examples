@@ -10,15 +10,26 @@ Layout.resizeView = function() {
 
     if(Layout.glW === currW && Layout.glH === currH){return;}
 
-    Layout.glW = currW;
+	var newW, newH;
+	
+	if(currH > currW){ //portrait
+		newW = APP.w;
+		newH = newW * (currH/currW);
+	}
+	else{ //landscape
+		newH = APP.h;
+		newW = newH * (currW/currH);
+	}
+	
+    Layout.glW = newW;
+    Layout.glH = newH;
 
-    Layout.glH = currH;
     APP.app.view.style.width = currW + "px";
     APP.app.view.style.height = currH + "px";
 
-    APP.app.renderer.resize(currW, currH);
+    APP.app.renderer.resize(newW, newH);
 
-    APP.resizeStage(currW, currH);
+    APP.resizeStage(newW, newH);
 };
 
 window.addEventListener("resize", Layout.resizeView);
